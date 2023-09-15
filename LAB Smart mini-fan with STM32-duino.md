@@ -6,7 +6,7 @@
 
 **Author**: 김선우
 
-**Github**: repository link
+**Github**: [repository link](https://github.com/ssunwookim/EC/blob/main/LAB%20Smart%20mini-fan%20with%20STM32-duino.md)
 
 **Demo Video**: [EC_LAB: Smart mini-fan with STM32-duino_김선우 - YouTube](https://www.youtube.com/watch?v=qafxAc4mhHY)
 
