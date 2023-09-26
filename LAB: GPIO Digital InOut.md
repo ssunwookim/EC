@@ -1,6 +1,6 @@
 # LAB: GPIO Digital InOut
 
-## LAB: Smart mini-fan with STM32-duino
+## LAB: GPIO Digital InOut
 
 **Date**: 2023/9/26
 
