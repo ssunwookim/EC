@@ -6,7 +6,7 @@
 
 **Author**: 김선우
 
-**Github**: [EC/LAB Smart mini-fan with STM32-duino.md at main · ssunwookim/EC (github.com)](https://github.com/ssunwookim/EC/blob/main/LAB Smart mini-fan with STM32-duino.md)
+**Github**: [EC/LAB: GPIO Digital InOut](https://github.com/ssunwookim/EC/blob/main/LAB Smart mini-fan with STM32-duino.md)
 
 **Demo Video**:  [EC_LAB: GPIO Digital InOut_김선우 ](https://www.youtube.com/watch?v=RwqiFNbPHk0&t=7s)
 
