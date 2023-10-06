@@ -6,9 +6,9 @@
 
 **Author:** 김선우
 
-**Github:** repository link
+**Github:** [EC/LAB: GPIO Digital InOut 7-segment.md at main · ssunwookim/EC (github.com)](https://github.com/ssunwookim/EC/blob/main/LAB%3A GPIO Digital InOut 7-segment.md)
 
-**Demo Video:**  [EC_LAB: GPIO Digital InOut 7-segment_김선우](https://www.youtube.com/watch?v=RwqiFNbPHk0&t=13s)
+**Demo Video:** [EC_LAB: GPIO Digital InOut 7-segment_김선우](https://www.youtube.com/watch?v=lZnu7dIGID4)
 
 **PDF version:**  Acrobat 2017
 
@@ -16,7 +16,7 @@
 
 ## I. Introduction
 
-In this lab, you are required to create a simple program to control a 7-segment display to show a decimal number (0~9) that increases by pressing a push-button.
+ In this lab, you are required to create a simple program to control a 7-segment display to show a decimal number (0~9) that increases by pressing a push-button.
 
 
 
@@ -187,7 +187,7 @@ void setup(void)
   - sevensegment_decoder(cnt); Call the function to determine the seven-segment display operation.
   - When the button pin is pressed, it moves to the next number.
     - Define the last state so that the state changes only when the button pin changes from 1 to 0.
-  -  If count exceeds 9, it is initialized to 0.
+  - If count exceeds 9, it is initialized to 0.
 
 2. Function code
 
@@ -271,7 +271,7 @@ void sevensegment_decoder(uint8_t  num){
 
 ### 4. Results
 
-Demo video link: [EC_LAB: GPIO Digital InOut 7-segment_김선우](https://www.youtube.com/watch?v=RwqiFNbPHk0&t=13s)
+Demo video link: [EC_LAB: GPIO Digital InOut 7-segment_김선우](https://www.youtube.com/watch?v=lZnu7dIGID4)
 
 
 
@@ -284,7 +284,9 @@ Demo video link: [EC_LAB: GPIO Digital InOut 7-segment_김선우](https://www.yo
 
 ### 2. Connection Diagram
 
-![image-20231006083348092](C:\Users\ksw86\AppData\Roaming\Typora\typora-user-images\image-20231006083348092.png)
+![image-20231006123019396](C:\Users\ksw86\AppData\Roaming\Typora\typora-user-images\image-20231006123019396.png)
+
+![](C:\Users\ksw86\AppData\Roaming\Typora\typora-user-images\image-20231006083348092.png)
 
 ### 3. Configuration
 
@@ -295,6 +297,64 @@ Demo video link: [EC_LAB: GPIO Digital InOut 7-segment_김선우](https://www.yo
 | PULL-UP                    | Push-Pull, No Pull-up-Pull-down, Medium Speed |
 
 ### 4. Code
+
+1. Main code
+
+```c
+#include "stm32f4xx.h"
+#include "ecGPIO.h"
+#include "ecRCC.h"
+
+#define LED_PIN 	5
+#define BUTTON_PIN 13
+
+void setup(void);
+
+int main(void) { 
+	// Initialiization --------------------------------------------------------
+	setup();
+	
+	unsigned int cnt = 0;
+	unsigned int lastState = 0;
+									
+	// Inifinite Loop ----------------------------------------------------------
+	while(1){
+		
+		sevensegment_display(cnt);
+		if(GPIO_read(GPIOC, BUTTON_PIN) == 0){
+			if(lastState == 1) cnt++;
+			lastState = 0;
+		}
+		else lastState = 1;
+		
+		if (cnt > 9) cnt = 0;
+		
+	}
+}
+
+
+// Initialiization 
+void setup(void)
+{
+		RCC_HSI_init();	
+		GPIO_init(GPIOC, BUTTON_PIN, INPUT);  // calls RCC_GPIOC_enable()
+		GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
+		sevensegment_display_init();
+}
+```
+
+- Load header file
+- Definition of LED pins and button pins
+- Initial value setting
+  - Definition of detailed conditions of button pins and LED pins
+
+- 'while' operation
+  - sevensegment_display(cnt); Call the function to determine the seven-segment display operation.
+  - When the button pin is pressed, it moves to the next number.
+    - Define the last state so that the state changes only when the button pin changes from 1 to 0.
+  - If count exceeds 9, it is initialized to 0.
+
+2. Function code
 
 ```c
 void sevensegment_display_init(){
@@ -351,6 +411,8 @@ void sevensegment_display(uint8_t  num){
 ## Ⅶ. Reference
 
 Gitbook: [LAB: GPIO Digital InOut 7-segment - EC (gitbook.io)](https://ykkim.gitbook.io/ec/ec-course/lab/lab-gpio-digital-inout-7segment)
+
+
 
 ## Ⅷ. Troubleshooting
 
