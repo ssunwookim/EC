@@ -8,7 +8,7 @@
 
 **Author:** 22000090/김선우
 
-**Github:** 
+**Github:** https://github.com/ssunwookim/EC/blob/main/EC_LAB_PWM_TIM.md
 
 **Demo Video:** [EC_LAB: Timer & PWM_김선우](https://www.youtube.com/watch?v=GSufnpuP0tk&t=8s)
 
